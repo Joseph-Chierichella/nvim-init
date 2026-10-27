@@ -1,3 +1,7 @@
+-- Set mapleader to Space (must be set before lazy setup)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- Enable true color and dark background
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
@@ -13,7 +17,7 @@ vim.opt.tabstop = 2
 
 -- Bootstrap lazy.nvim if not installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -51,6 +55,25 @@ require("lazy").setup({
     end,
   },
 
+  -- 🎮 Discord Rich Presence
+  {
+    "vyfor/cord.nvim",
+    build = ":Cord update",
+    opts = {},
+  },
+
+
+  -- 📊 Statusline
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      options = {
+        theme = "tokyonight",
+      },
+    },
+  },
+
   -- () and "" autopairing
   {
     "windwp/nvim-autopairs",
@@ -62,7 +85,7 @@ require("lazy").setup({
   -- 🔍 Telescope fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
     config = function()
       require("telescope").setup({
         defaults = {
