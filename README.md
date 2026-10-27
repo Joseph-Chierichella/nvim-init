@@ -221,6 +221,19 @@ After installation, these are the most useful commands to remember:
 :Lazy sync
 ```
 
+# Quick way to open your Neovim config folder on Windows
+
+If you want to jump directly to the folder that contains your Neovim config, press:
+
+- Windows key + R
+- then type:
+
+```text
+%localappdata%\nvim
+```
+
+This will open the folder where your `init.lua` file lives. From there, you can open `init.lua` and edit it directly.
+
 # Summary
 
 This config adds a complete Neovim setup for Windows with:
